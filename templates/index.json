@@ -15,6 +15,7 @@
         "heading": "Walk on clouds.",
         "subheading": "Give your feet the comfort they deserve: support, relief, and a gentle massage with every step.",
         "button_label": "Shop now & save up to 70%",
+        "image_url": "https://cdn.shopify.com/s/files/1/0776/3601/0031/files/ChatGPT_Image_13_de_ago._de_2026_14_16_19.png?v=1786641453",
         "show_rating": true,
         "rating_score": "4.8/5.0",
         "rating_count": "rated by 10,000+ reviews"
@@ -37,7 +38,7 @@
     "comparison": {
       "type": "comparison-table",
       "settings": {
-        "heading": "<p>What makes <strong>Solevia®</strong> so different?</p>",
+        "heading": "<p>What makes <strong>Solevia®<\/strong> so different?<\/p>",
         "brand_name": "Solevia",
         "others_label": "Regular insoles"
       },
@@ -102,7 +103,7 @@
     "guarantee": {
       "type": "guarantee-cta",
       "settings": {
-        "heading": "<p>Try Solevia® for 30 days, risk-free.</p>",
+        "heading": "<p>Try Solevia® for 30 days, risk-free.<\/p>",
         "text": "We're so confident you'll love walking with Solevia that we'll let you try it for 30 days.",
         "subheading": "Not satisfied?",
         "subtext": "Get your money back — no questions asked.",

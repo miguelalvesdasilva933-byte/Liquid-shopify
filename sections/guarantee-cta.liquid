@@ -1,0 +1,109 @@
+{%- comment -%}
+  ============================================================
+  GUARANTEE CTA — secao de garantia com call to action final
+  ============================================================
+  Bloco centralizado com headline de garantia, texto de apoio,
+  subtitulo "Nao satisfeito?" e botao CTA. Fundo limpo.
+{%- endcomment -%}
+<div class="guarantee" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="guarantee__inner">
+      {%- if section.settings.heading != blank -%}
+        <div class="guarantee__heading">{{ section.settings.heading }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <p class="guarantee__text">{{ section.settings.text | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="guarantee__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="guarantee__subtext">{{ section.settings.subtext | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="guarantee__cta">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .guarantee {
+    padding: 80px 0;
+    background-color: var(--color-background, #fff);
+  }
+  .guarantee__inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .guarantee__heading {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-family: var(--font-heading-family);
+    font-weight: var(--font-heading-weight);
+    margin: 0 0 12px;
+    line-height: 1.3;
+  }
+  .guarantee__heading p { margin: 0; }
+  .guarantee__text {
+    font-size: var(--f2);
+    opacity: 0.7;
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+  .guarantee__subheading {
+    font-size: var(--f4);
+    font-weight: 700;
+    font-family: var(--font-heading-family);
+    margin: 0 0 6px;
+  }
+  .guarantee__subtext {
+    font-size: var(--f2);
+    opacity: 0.7;
+    margin: 0 0 28px;
+    line-height: 1.5;
+  }
+  .guarantee__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 36px;
+    font-family: var(--font-heading-family);
+    font-size: var(--f2);
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--color-accent, #e85d04);
+    border: 2px solid var(--color-accent, #e85d04);
+    border-radius: var(--buttons-radius, 6px);
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+  .guarantee__cta:hover {
+    background-color: color-mix(in srgb, var(--color-accent, #e85d04) 85%, #000);
+    transform: translateY(-1px);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Guarantee CTA",
+  "tag": "section",
+  "settings": [
+    { "type": "richtext", "id": "heading", "default": "<p>Try Solevia® for 30 days, risk-free.</p>", "label": "Heading" },
+    { "type": "text", "id": "text", "default": "We're so confident you'll love walking with Solevia that we'll let you try it for 30 days.", "label": "Supporting text" },
+    { "type": "text", "id": "subheading", "default": "Not satisfied?", "label": "Sub-heading" },
+    { "type": "text", "id": "subtext", "default": "Get your money back — no questions asked.", "label": "Sub-text" },
+    { "type": "text", "id": "button_label", "default": "Order Solevia", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Guarantee CTA" }]
+}
+{% endschema %}

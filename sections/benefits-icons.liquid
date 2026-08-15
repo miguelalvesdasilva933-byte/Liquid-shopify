@@ -1,0 +1,127 @@
+{%- comment -%}
+  ============================================================
+  BENEFITS ICONS — linha de icones com beneficios do produto
+  ============================================================
+  Grade de icones SVG inline com titulo e descricao curta.
+  Layout horizontal em desktop, 2 colunas em mobile.
+{%- endcomment -%}
+<div class="benefits" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="benefits__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <div class="benefits__grid">
+      {%- for block in section.blocks -%}
+        <div class="benefits__item" {{ block.shopify_attributes }}>
+          <div class="benefits__icon" style="color: {{ block.settings.icon_color | default: 'var(--color-accent, #e85d04)' }}">
+            {%- case block.settings.icon -%}
+              {%- when 'massage' -%}
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4c-5.5 0-10 4.5-10 10v8c0 2 1 4 3 5l3 2v7c0 2 1.5 4 4 4s4-2 4-4v-7l3-2c2-1 3-3 3-5v-8c0-5.5-4.5-10-10-10z"/><path d="M18 22c-2 1-4 3-4 6"/><path d="M30 22c2 1 4 3 4 6"/></svg>
+              {%- when 'shoe' -%}
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32c0-4 2-8 6-10l4-2c2-1 4-4 4-7v-1c0-1 1-2 2-2h1c1 0 2 1 2 2v3c0 2 2 4 4 4h6c4 0 7 3 7 7v6H6z"/><line x1="6" y1="38" x2="42" y2="38"/></svg>
+              {%- when 'hygiene' -%}
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4v8"/><path d="M24 36v8"/><path d="M8 24h8"/><path d="M32 24h8"/><circle cx="24" cy="24" r="8"/><path d="M12 12l4 4"/><path d="M32 32l4 4"/><path d="M12 36l4-4"/><path d="M32 16l4-4"/></svg>
+              {%- when 'expert' -%}
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="8"/><path d="M12 40c0-6.6 5.4-12 12-12s12 5.4 12 12"/><path d="M30 12l4-4"/><path d="M34 12h-4v-4"/></svg>
+              {%- when 'guarantee' -%}
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4L6 12v12c0 10.5 7.7 20.3 18 24 10.3-3.7 18-13.5 18-24V12L24 4z"/><polyline points="16 24 22 30 34 18"/></svg>
+              {%- else -%}
+                <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><polyline points="16 24 22 30 34 18"/></svg>
+            {%- endcase -%}
+          </div>
+          <h3 class="benefits__title">{{ block.settings.title | escape }}</h3>
+          <p class="benefits__desc">{{ block.settings.description | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .benefits {
+    padding: 56px 0;
+    background-color: var(--color-background, #fff);
+  }
+  .benefits__heading {
+    text-align: center;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin: 0 0 40px;
+  }
+  .benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .benefits__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .benefits__title {
+    font-size: var(--f2);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .benefits__desc {
+    font-size: var(--f1);
+    color: var(--color-text);
+    opacity: 0.7;
+    margin: 0;
+    line-height: 1.5;
+  }
+  @media screen and (max-width: 749px) {
+    .benefits__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Benefits Icons",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Section heading" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "massage", "label": "Massage" },
+            { "value": "shoe", "label": "Shoe / Fit" },
+            { "value": "hygiene", "label": "Hygiene / Fresh" },
+            { "value": "expert", "label": "Expert" },
+            { "value": "guarantee", "label": "Guarantee / Shield" },
+            { "value": "check", "label": "Checkmark" }
+          ],
+          "default": "check"
+        },
+        { "type": "color", "id": "icon_color", "label": "Icon color", "default": "#e85d04" },
+        { "type": "text", "id": "title", "default": "Benefit", "label": "Title" },
+        { "type": "text", "id": "description", "default": "Short description of this benefit.", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Icons",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "massage", "title": "Massage every step", "description": "Direct relief for tired, sore feet — feel it with every step." } },
+        { "type": "benefit", "settings": { "icon": "shoe", "title": "Fits any shoe", "description": "Sneakers, dress shoes, or sports shoes — Solevia always fits." } },
+        { "type": "benefit", "settings": { "icon": "hygiene", "title": "Fresh & hygienic", "description": "Breathable & antibacterial — no sweat, no odor." } },
+        { "type": "benefit", "settings": { "icon": "expert", "title": "Developed with experts", "description": "Designed with podiatrists for maximum comfort & support." } },
+        { "type": "benefit", "settings": { "icon": "guarantee", "title": "30-day trial", "description": "Not satisfied? Get your money back. Simple." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

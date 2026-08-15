@@ -1,19 +1,114 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "Welcome to your store" } },
-        "text": { "type": "text", "settings": { "text": "<p>Add your headline and shop link here.</p>" } },
-        "button": { "type": "button", "settings": { "button_label": "Shop now" } }
-      },
-      "block_order": ["heading", "text", "button"],
-      "settings": { "height": "medium", "text_alignment": "center" }
+      "type": "hero-banner-solevia",
+      "settings": {
+        "heading": "Walk on clouds.",
+        "subheading": "Give your feet the comfort they deserve: support, relief, and a gentle massage with every step.",
+        "button_label": "Shop now & save up to 70%",
+        "show_rating": true,
+        "rating_score": "4.8/5.0",
+        "rating_count": "rated by 10,000+ reviews"
+      }
     },
-    "featured": {
-      "type": "featured-collection",
-      "settings": { "heading": "Featured collection", "products_to_show": 4, "columns_desktop": 4 }
+    "press": {
+      "type": "press-logos",
+      "settings": {
+        "heading": "As seen in"
+      },
+      "blocks": {
+        "logo_1": { "type": "logo", "settings": { "name": "Runner's World" } },
+        "logo_2": { "type": "logo", "settings": { "name": "Men's Health" } },
+        "logo_3": { "type": "logo", "settings": { "name": "Forbes" } },
+        "logo_4": { "type": "logo", "settings": { "name": "Healthline" } },
+        "logo_5": { "type": "logo", "settings": { "name": "GQ" } }
+      },
+      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5"]
+    },
+    "comparison": {
+      "type": "comparison-table",
+      "settings": {
+        "heading": "<p>What makes <strong>Solevia®</strong> so different?</p>",
+        "brand_name": "Solevia",
+        "others_label": "Regular insoles"
+      },
+      "blocks": {
+        "b1": { "type": "bullet", "settings": { "text": "Subtle massage with every step" } },
+        "b2": { "type": "bullet", "settings": { "text": "Relieves pressure points & fatigue" } },
+        "b3": { "type": "bullet", "settings": { "text": "Fits & molds to any shoe" } },
+        "r1": { "type": "row", "settings": { "feature": "Cloud-like comfort", "brand_has": true, "others_has": false } },
+        "r2": { "type": "row", "settings": { "feature": "Massaging foam layer that relieves pressure", "brand_has": true, "others_has": false } },
+        "r3": { "type": "row", "settings": { "feature": "Support for prolonged standing & walking", "brand_has": true, "others_has": false } },
+        "r4": { "type": "row", "settings": { "feature": "Universal fit", "brand_has": true, "others_has": false } },
+        "r5": { "type": "row", "settings": { "feature": "Odor-free & antibacterial", "brand_has": true, "others_has": false } },
+        "r6": { "type": "row", "settings": { "feature": "Affordable price", "brand_has": true, "others_has": true } }
+      },
+      "block_order": ["b1", "b2", "b3", "r1", "r2", "r3", "r4", "r5", "r6"]
+    },
+    "benefits": {
+      "type": "benefits-icons",
+      "settings": {},
+      "blocks": {
+        "ben1": { "type": "benefit", "settings": { "icon": "massage", "icon_color": "#e85d04", "title": "Massage every step", "description": "Direct relief for tired, sore feet — feel it with every step." } },
+        "ben2": { "type": "benefit", "settings": { "icon": "shoe", "icon_color": "#e85d04", "title": "Fits any shoe", "description": "Sneakers, dress shoes, or sports shoes — Solevia always fits." } },
+        "ben3": { "type": "benefit", "settings": { "icon": "hygiene", "icon_color": "#e85d04", "title": "Fresh & hygienic", "description": "Breathable & antibacterial — no sweat, no odor." } },
+        "ben4": { "type": "benefit", "settings": { "icon": "expert", "icon_color": "#e85d04", "title": "Developed with experts", "description": "Designed with podiatrists for maximum comfort & support." } },
+        "ben5": { "type": "benefit", "settings": { "icon": "guarantee", "icon_color": "#e85d04", "title": "30-day trial", "description": "Not satisfied? Get your money back. Simple." } }
+      },
+      "block_order": ["ben1", "ben2", "ben3", "ben4", "ben5"]
+    },
+    "reviews": {
+      "type": "customer-reviews",
+      "settings": {
+        "heading": "Let our customers speak!",
+        "show_overall": true,
+        "overall_score": "4.8",
+        "review_count": "10,000+"
+      },
+      "blocks": {
+        "rev1": { "type": "review", "settings": { "stars": 5, "title": "Feels absolutely amazing...", "text": "It feels wonderful. It's as if you're walking on clouds between your shoes. Golf, walking, and hiking shoes — just slide an insole underneath and you're good to go.", "author": "James K." } },
+        "rev2": { "type": "review", "settings": { "stars": 5, "title": "I always had back pain...", "text": "I always had back pain, even after buying new shoes two months ago. Since I got these insoles, I can go the whole day without any pain in my feet.", "author": "Amanda S." } },
+        "rev3": { "type": "review", "settings": { "stars": 5, "title": "It truly relieves the pain...", "text": "It truly relieves the pain from walking. I can now walk much longer without having to sit down for a break. I can't do without it anymore.", "author": "Michael V." } },
+        "rev4": { "type": "review", "settings": { "stars": 5, "title": "Right away I noticed...", "text": "Right away I noticed the difference when I put them in my shoes. It felt great and much more comfortable walking — no more pain. Wonderful!", "author": "Lisa S." } },
+        "rev5": { "type": "review", "settings": { "stars": 5, "title": "The insole fits perfectly...", "text": "The insole fits perfectly. After 2 days I had the idea that it was getting better. It turned out to be true — it's just a great insole.", "author": "David R." } },
+        "rev6": { "type": "review", "settings": { "stars": 5, "title": "Had foot pain for years...", "text": "Had foot pain in my work shoes, got these insoles and the results are amazing! My feet feel like I'm walking on clouds, even after 10-hour shifts.", "author": "Dennis J." } }
+      },
+      "block_order": ["rev1", "rev2", "rev3", "rev4", "rev5", "rev6"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "heading": "Got questions?",
+        "subheading": "We've answered the most commonly asked questions right here."
+      },
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "How does Solevia work?", "answer": "<p>Solevia uses a multi-layer foam technology that absorbs impact and distributes pressure evenly across your foot, providing relief from pain and fatigue with every step.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "What size should I order?", "answer": "<p>Solevia insoles come in a universal size that you can trim to fit any shoe. Simply place the insole over your existing one, trace the outline, and cut along the line for a perfect fit.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "Is it good for all shoe types?", "answer": "<p>Yes! Solevia works with sneakers, dress shoes, work boots, running shoes, and more. The slim profile ensures it fits comfortably without making your shoes feel tight.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "How long do they last?", "answer": "<p>With normal daily use, Solevia insoles maintain their cushioning and support for 6-12 months. We recommend replacing them when you notice a decrease in comfort.</p>" } },
+        "q5": { "type": "question", "settings": { "question": "What is your return policy?", "answer": "<p>We offer a 30-day money-back guarantee. If you're not completely satisfied with your Solevia insoles, simply contact us and we'll process a full refund — no questions asked.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"]
+    },
+    "guarantee": {
+      "type": "guarantee-cta",
+      "settings": {
+        "heading": "<p>Try Solevia® for 30 days, risk-free.</p>",
+        "text": "We're so confident you'll love walking with Solevia that we'll let you try it for 30 days.",
+        "subheading": "Not satisfied?",
+        "subtext": "Get your money back — no questions asked.",
+        "button_label": "Order Solevia"
+      }
     }
   },
-  "order": ["hero", "featured"]
+  "order": ["hero", "press", "comparison", "benefits", "reviews", "faq", "guarantee"]
 }

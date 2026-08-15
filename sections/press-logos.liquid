@@ -1,0 +1,113 @@
+{%- comment -%}
+  ============================================================
+  PRESS LOGOS — barra de logos de midia / social proof
+  ============================================================
+  Exibe logos de veiculos de imprensa ou parceiros em linha.
+  Cada bloco é uma imagem de logo. Fundo claro, logos em cinza.
+{%- endcomment -%}
+<div class="press-logos" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <p class="press-logos__heading">{{ section.settings.heading | escape }}</p>
+    {%- endif -%}
+    <div class="press-logos__row">
+      {%- for block in section.blocks -%}
+        <div class="press-logos__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}
+            {{
+              block.settings.logo
+              | image_url: height: 40
+              | image_tag:
+                loading: 'lazy',
+                class: 'press-logos__img',
+                alt: block.settings.name | default: 'Press logo' | escape
+            }}
+          {%- else -%}
+            <span class="press-logos__placeholder">{{ block.settings.name | default: 'Logo' | escape }}</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .press-logos {
+    padding: 32px 0;
+    background-color: var(--color-background, #fff);
+    border-top: 1px solid var(--color-border, #e5e5e5);
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+  }
+  .press-logos__heading {
+    text-align: center;
+    font-size: var(--f1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text);
+    opacity: 0.5;
+    margin: 0 0 20px;
+  }
+  .press-logos__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px 48px;
+  }
+  .press-logos__img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.55;
+    transition: opacity 0.2s, filter 0.2s;
+  }
+  .press-logos__item:hover .press-logos__img {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+  .press-logos__placeholder {
+    font-family: var(--font-heading-family);
+    font-size: var(--f4);
+    font-weight: 700;
+    color: var(--color-text);
+    opacity: 0.35;
+  }
+  @media screen and (max-width: 749px) {
+    .press-logos__row { gap: 20px 28px; }
+    .press-logos__img { height: 22px; }
+    .press-logos__placeholder { font-size: var(--f3); }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Press Logos",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading (optional)", "default": "As seen in" }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "logo", "label": "Logo image" },
+        { "type": "text", "id": "name", "default": "Brand", "label": "Brand name (fallback)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Logos",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "Runner's World" } },
+        { "type": "logo", "settings": { "name": "Men's Health" } },
+        { "type": "logo", "settings": { "name": "Forbes" } },
+        { "type": "logo", "settings": { "name": "Healthline" } },
+        { "type": "logo", "settings": { "name": "GQ" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

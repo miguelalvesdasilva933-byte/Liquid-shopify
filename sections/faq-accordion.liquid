@@ -1,0 +1,129 @@
+{%- comment -%}
+  ============================================================
+  FAQ ACCORDION — perguntas frequentes com accordion nativo
+  ============================================================
+  Usa <details>/<summary> nativo do HTML — funciona sem JS.
+  Cada bloco é uma pergunta/resposta expansivel.
+{%- endcomment -%}
+<div class="faq-section" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="faq-section__inner">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="faq-section__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="faq-section__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+
+      <div class="faq-section__list">
+        {%- for block in section.blocks -%}
+          <details class="faq-section__item" {{ block.shopify_attributes }}>
+            <summary class="faq-section__question">
+              <span>{{ block.settings.question | escape }}</span>
+              <svg class="faq-section__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-section__answer">
+              {{ block.settings.answer }}
+            </div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .faq-section {
+    padding: 64px 0;
+    background-color: var(--color-background-contrast, #f7f7f7);
+  }
+  .faq-section__inner {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+  .faq-section__heading {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 8px;
+  }
+  .faq-section__subheading {
+    text-align: center;
+    font-size: var(--f2);
+    opacity: 0.65;
+    margin: 0 0 36px;
+  }
+  .faq-section__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .faq-section__item {
+    border-bottom: 1px solid var(--color-border, #e0e0e0);
+  }
+  .faq-section__item:first-child {
+    border-top: 1px solid var(--color-border, #e0e0e0);
+  }
+  .faq-section__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 4px;
+    font-size: var(--f2);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    min-height: 44px;
+  }
+  .faq-section__question::-webkit-details-marker { display: none; }
+  .faq-section__question::marker { display: none; content: ''; }
+  .faq-section__chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .faq-section__item[open] .faq-section__chevron {
+    transform: rotate(180deg);
+  }
+  .faq-section__answer {
+    padding: 0 4px 20px;
+    font-size: var(--f2);
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+  .faq-section__answer p { margin: 0 0 12px; }
+  .faq-section__answer p:last-child { margin-bottom: 0; }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "default": "Got questions?", "label": "Heading" },
+    { "type": "text", "id": "subheading", "default": "We've answered the most commonly asked questions right here.", "label": "Subheading" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "default": "How does Solevia work?", "label": "Question" },
+        { "type": "richtext", "id": "answer", "default": "<p>Solevia uses a multi-layer foam technology that absorbs impact and distributes pressure evenly across your foot, providing comfort and support with every step.</p>", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "blocks": [
+        { "type": "question", "settings": { "question": "How does Solevia work?", "answer": "<p>Solevia uses a multi-layer foam technology that absorbs impact and distributes pressure evenly across your foot, providing relief from pain and fatigue with every step.</p>" } },
+        { "type": "question", "settings": { "question": "What size should I order?", "answer": "<p>Solevia insoles come in a universal size that you can trim to fit any shoe. Simply place the insole over your existing one, trace the outline, and cut along the line for a perfect fit.</p>" } },
+        { "type": "question", "settings": { "question": "Is it good for all shoe types?", "answer": "<p>Yes! Solevia works with sneakers, dress shoes, work boots, running shoes, and more. The slim profile ensures it fits comfortably without making your shoes feel tight.</p>" } },
+        { "type": "question", "settings": { "question": "How long do they last?", "answer": "<p>With normal daily use, Solevia insoles maintain their cushioning and support for 6-12 months. We recommend replacing them when you notice a decrease in comfort.</p>" } },
+        { "type": "question", "settings": { "question": "What is your return policy?", "answer": "<p>We offer a 30-day money-back guarantee. If you're not completely satisfied with your Solevia insoles, simply contact us and we'll process a full refund — no questions asked.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

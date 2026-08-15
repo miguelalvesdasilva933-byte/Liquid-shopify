@@ -1,0 +1,179 @@
+{%- comment -%}
+  ============================================================
+  CUSTOMER REVIEWS — carrossel de depoimentos de clientes
+  ============================================================
+  Heading com nota geral, carrossel horizontal de cards de review.
+  Cada card tem estrelas, titulo, texto e nome do cliente.
+  Scroll nativo com CSS, sem dependencia de JS externo.
+{%- endcomment -%}
+<div class="reviews-section" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="reviews-section__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.show_overall -%}
+      <div class="reviews-section__overall">
+        <span class="reviews-section__label">Excellent rating</span>
+        <span class="reviews-section__score">{{ section.settings.overall_score | default: '4.8' }} / 5</span>
+        <span class="reviews-section__stars-overall">
+          {%- for i in (1..5) -%}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-accent, #e85d04)" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          {%- endfor -%}
+        </span>
+      </div>
+      {%- if section.settings.review_count != blank -%}
+        <p class="reviews-section__count">Based on <strong>{{ section.settings.review_count | escape }}</strong> customer reviews</p>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="reviews-section__carousel">
+      {%- for block in section.blocks -%}
+        <div class="reviews-section__card" {{ block.shopify_attributes }}>
+          <div class="reviews-section__card-stars">
+            {%- assign stars = block.settings.stars | default: 5 -%}
+            {%- for i in (1..5) -%}
+              {%- if i <= stars -%}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent, #e85d04)" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              {%- else -%}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#ddd" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          {%- if block.settings.title != blank -%}
+            <h3 class="reviews-section__card-title">{{ block.settings.title | escape }}</h3>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="reviews-section__card-text">{{ block.settings.text | escape }}</p>
+          {%- endif -%}
+          {%- if block.settings.author != blank -%}
+            <p class="reviews-section__card-author">{{ block.settings.author | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .reviews-section {
+    padding: 64px 0;
+    background-color: var(--color-background, #fff);
+  }
+  .reviews-section__heading {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 16px;
+  }
+  .reviews-section__overall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .reviews-section__label {
+    font-size: var(--f2);
+    font-weight: 500;
+  }
+  .reviews-section__score {
+    font-size: var(--f3);
+    font-weight: 700;
+  }
+  .reviews-section__stars-overall {
+    display: flex;
+    gap: 2px;
+  }
+  .reviews-section__count {
+    text-align: center;
+    font-size: var(--f1);
+    opacity: 0.65;
+    margin: 0 0 32px;
+  }
+  .reviews-section__carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+  }
+  .reviews-section__carousel::-webkit-scrollbar { height: 4px; }
+  .reviews-section__carousel::-webkit-scrollbar-thumb { background: var(--color-border, #ccc); border-radius: 4px; }
+  .reviews-section__card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    background-color: var(--color-background-contrast, #f7f7f7);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .reviews-section__card-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 12px;
+  }
+  .reviews-section__card-title {
+    font-size: var(--f2);
+    font-weight: 700;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+  .reviews-section__card-text {
+    font-size: var(--f1);
+    line-height: 1.6;
+    margin: 0 0 16px;
+    flex: 1;
+    opacity: 0.8;
+  }
+  .reviews-section__card-author {
+    font-size: var(--f1);
+    font-weight: 600;
+    margin: 0;
+    opacity: 0.6;
+  }
+  @media screen and (max-width: 749px) {
+    .reviews-section__card { flex: 0 0 260px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Customer Reviews",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "default": "Let our customers speak!", "label": "Heading" },
+    { "type": "checkbox", "id": "show_overall", "default": true, "label": "Show overall rating" },
+    { "type": "text", "id": "overall_score", "default": "4.8", "label": "Overall score" },
+    { "type": "text", "id": "review_count", "default": "10,000+", "label": "Number of reviews" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "stars", "min": 1, "max": 5, "step": 1, "default": 5, "label": "Stars" },
+        { "type": "text", "id": "title", "default": "Absolutely amazing!", "label": "Review title" },
+        { "type": "textarea", "id": "text", "default": "These insoles changed everything. I can walk all day without any pain. My feet feel incredible.", "label": "Review text" },
+        { "type": "text", "id": "author", "default": "Sarah K.", "label": "Author name" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "stars": 5, "title": "Feels absolutely amazing...", "text": "It feels wonderful. It's as if you're walking on clouds between your shoes. Golf, walking, and hiking shoes — just slide an insole underneath and you're good to go. Had mine for 2 years now!", "author": "James K." } },
+        { "type": "review", "settings": { "stars": 5, "title": "I always had back pain...", "text": "I always had back pain, even after buying new shoes two months ago. Since I got these insoles, I can go the whole day without any pain in my feet.", "author": "Amanda S." } },
+        { "type": "review", "settings": { "stars": 5, "title": "It truly relieves the pain...", "text": "It truly relieves the pain from walking. I can now walk much longer without having to sit down for a break. I can't do without it anymore.", "author": "Michael V." } },
+        { "type": "review", "settings": { "stars": 5, "title": "Right away I noticed...", "text": "Right away I noticed the difference when I put them in my shoes. It felt great and much more comfortable walking — no more pain. Wonderful!", "author": "Lisa S." } },
+        { "type": "review", "settings": { "stars": 5, "title": "The insole fits perfectly...", "text": "The insole fits perfectly. After 2 days I had the idea that it was getting better. It turned out to be true — it's just a great insole that fits well in my sneakers.", "author": "David R." } },
+        { "type": "review", "settings": { "stars": 5, "title": "Had foot pain for years...", "text": "Had foot pain in my work shoes, got these insoles and the results are amazing! My feet feel like I'm walking on clouds, even after 10-hour shifts.", "author": "Dennis J." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
